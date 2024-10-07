@@ -39,17 +39,30 @@ int main(int argc, char *argv[])
     QPushButton *labelColorButton=new QPushButton;
     labelColorButton->setText("select label color");
     QObject::connect(labelColorButton, &QPushButton::clicked, [label]() {
-    QColor color = QColorDialog::getColor();
-    if (color.isValid()) {
-        QPalette pal = label->palette();
-        pal.setColor(QPalette::WindowText, color);
-        label->setPalette(pal);
-    }
+        QColor color = QColorDialog::getColor();
+        if (color.isValid()) {
+            QPalette pal = label->palette();
+            pal.setColor(QPalette::WindowText, color);
+            label->setPalette(pal);
+        }
     });
     QVBoxLayout *layout2=new QVBoxLayout;
     layout2->addWidget(labelColorButton);
     tab2->setLayout(layout2);
     tabWidget->addTab(tab2,"林沛慧");
+    //----------
+    //----------member4
+    QWidget *tab4=new QWidget;
+    QPushButton *fileSelectorButton=new QPushButton;
+    fileSelectorButton->setText("select file");
+    QObject::connect(fileSelectorButton,&QPushButton::clicked,[label](){
+        QString fileName=QFileDialog::getOpenFileName();
+        if(fileName!=""){label->setText(fileName);}
+    });
+    QVBoxLayout *layout4=new QVBoxLayout;
+    layout4->addWidget(fileSelectorButton);
+    tab4->setLayout(layout4);
+    tabWidget->addTab(tab4,"徐祥恩");
     //----------
     //----------leader
     tabWidget->show();
