@@ -34,6 +34,23 @@ int main(int argc, char *argv[])
     tab1->setLayout(layout1);
     tabWidget->addTab(tab1,"陳志杰");
     //----------
+    //----------member2
+    QWidget *tab2=new QWidget;
+    QPushButton *labelColorButton=new QPushButton;
+    labelColorButton->setText("select label color");
+    QObject::connect(labelColorButton, &QPushButton::clicked, [label]() {
+    QColor color = QColorDialog::getColor();
+    if (color.isValid()) {
+        QPalette pal = label->palette();
+        pal.setColor(QPalette::WindowText, color);
+        label->setPalette(pal);
+    }
+    });
+    QVBoxLayout *layout2=new QVBoxLayout;
+    layout2->addWidget(labelColorButton);
+    tab2->setLayout(layout2);
+    tabWidget->addTab(tab2,"林沛慧");
+    //----------
     //----------leader
     tabWidget->show();
     return a.exec();
